@@ -1,0 +1,39 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "regions": ["iad1"],
+  "env": {
+    "OPENAI_API_KEY": {
+      "type": "secret",
+      "comment": "Get from: https://platform.openai.com/api-keys"
+    },
+    "PERPLEXITY_API_KEY": {
+      "type": "secret",
+      "comment": "Get from: https://www.perplexity.ai/settings/api (optional)"
+    },
+    "DATABASE_URL": {
+      "type": "secret",
+      "comment": "PostgreSQL connection string from Neon"
+    },
+    "NEXTAUTH_SECRET": {
+      "type": "secret",
+      "comment": "Generate at: https://generate-secret.vercel.app/32"
+    },
+    "NEXTAUTH_URL": {
+      "type": "system",
+      "value": "VERCEL_URL"
+    },
+    "NEXT_PUBLIC_APP_URL": {
+      "type": "system",
+      "value": "VERCEL_URL"
+    },
+    "NODE_ENV": {
+      "type": "plain",
+      "value": "production"
+    }
+  }
+}

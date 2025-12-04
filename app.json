@@ -1,0 +1,63 @@
+{
+  "name": "Tent - AI Real Estate Search",
+  "description": "AI-powered real estate search platform with conversational interface and vector search",
+  "repository": "https://github.com/YOUR-USERNAME/tent-app",
+  "logo": "https://tent-app.vercel.app/logo.png",
+  "keywords": [
+    "real-estate",
+    "ai",
+    "nextjs",
+    "property-search",
+    "vector-search",
+    "openai",
+    "postgresql"
+  ],
+  "success_url": "/",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:mini",
+      "options": {
+        "version": "16"
+      }
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for AI features. Get from: https://platform.openai.com/api-keys",
+      "required": true
+    },
+    "PERPLEXITY_API_KEY": {
+      "description": "Perplexity API key for enhanced search (optional). Get from: https://www.perplexity.ai/settings/api",
+      "required": false
+    },
+    "NEXTAUTH_SECRET": {
+      "description": "Random secret for NextAuth. Generate at: https://generate-secret.vercel.app/32",
+      "generator": "secret"
+    },
+    "NEXTAUTH_URL": {
+      "description": "Your app URL (will be set automatically)"
+    },
+    "NEXT_PUBLIC_APP_URL": {
+      "description": "Public app URL (will be set automatically)"
+    }
+  },
+  "scripts": {
+    "postdeploy": "pnpm db:push"
+  },
+  "stack": "heroku-22"
+}

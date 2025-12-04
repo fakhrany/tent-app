@@ -1,0 +1,36 @@
+services:
+  # Web Service
+  - type: web
+    name: tent-app
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: pnpm install && pnpm build
+    startCommand: pnpm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tent-db
+          property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PERPLEXITY_API_KEY
+        sync: false
+      - key: NEXTAUTH_SECRET
+        generateValue: true
+      - key: NEXTAUTH_URL
+        value: https://tent-app.onrender.com
+      - key: NEXT_PUBLIC_APP_URL
+        value: https://tent-app.onrender.com
+
+# Database
+databases:
+  - name: tent-db
+    databaseName: tent
+    user: tent
+    plan: free
+    postgresMajorVersion: 16
+    ipAllowList: []
